@@ -23,17 +23,17 @@ public class Horse {
         horseName = (lines.get(randomIndex));
 
         if (tier.equals("S"))
-            horseWeight = (int) (Math.random() * 10);
+            horseWeight = (int) (1 + (Math.random() * 10));
         if (tier.equals("A"))
-            horseWeight = (int) (Math.random() * 8);
+            horseWeight = (int) (1 + (Math.random() * 8));
         if (tier.equals("B"))
-            horseWeight = (int) (Math.random() * 6);
+            horseWeight = (int) (1 + (Math.random() * 6));
         if (tier.equals("C"))
-            horseWeight = (int) (Math.random() * 5);
+            horseWeight = (int) (1 + (Math.random() * 5));
         if (tier.equals("D"))
-            horseWeight = (int) (Math.random() * 4);
+            horseWeight = (int) (1 + (Math.random() * 4));
         if (tier.equals("E"))
-            horseWeight = (int) (Math.random() * 2);
+            horseWeight = (int) (2 +(Math.random() * 2));
 
 
 
