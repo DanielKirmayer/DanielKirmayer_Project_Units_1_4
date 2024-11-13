@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -7,6 +8,8 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         boolean run = true;
         double playerMoney = 100;
+        double risk = 0;
+        int choice = 0;
             Scanner scan = new Scanner(System.in);
             System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                     "⠀⠀⠀⠀⠀⣀⣀⣀⣠⠔⠊⠑⠒⣷⠆⢸⢳⠀⠀⠀⠀⠀⠀⠀\n" +
@@ -46,10 +49,40 @@ public class Main {
                             c.getHorseName()+" Odds: 4-1 \n5. "+
                             d.getHorseName()+" Odds: 5-1 \n6. "+
                             e.getHorseName()+" Odds: 10-1 \n"+
-                            "Choose a horse to bet on: ");
-            int choice = scan.nextInt();
+                            "Choose a horse to bet on 1-6 (not a name): ");
+
+            boolean playerIsChoosing = true;
+                while (playerIsChoosing) {
+                    try {
+                        choice = scan.nextInt();
+                        if (choice >= 1 && choice <= 6) {
+                            playerIsChoosing = false;
+                        } else {
+                            System.out.println("Invalid choice, please try again.");
+                        }
+                    } catch (InputMismatchException exception) {
+                        System.out.println("Invalid choice, please try again. Choose a number 1-6 (not a name)");
+                        scan.nextLine();
+                    }
+                }
+
+                boolean dialogue = true;
+
+
+                while (risk > playerMoney || risk <= 0){
             System.out.println("How much would you like to bet?: ");
-            int risk = scan.nextInt();
+            try {
+            risk = scan.nextDouble();
+            risk = (double) Math.round(risk * 100) /100;}
+            catch (InputMismatchException exception) {
+                System.out.println("Invalid input, please enter a number.");
+                scan.nextLine();
+                dialogue = false;
+            }
+            if (risk > playerMoney || risk <= 0 && dialogue)
+                System.out.println("You don't have enough money to bet that much or the bet is too small.");
+
+            }
 
             playerMoney -= risk;
 
