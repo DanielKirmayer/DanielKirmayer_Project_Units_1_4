@@ -29,8 +29,9 @@ public class Main {
                     "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠛⠀⠀⠀⠀⠀⠀");
 
             System.out.println("Howdy partner, ready to gamble? ");
-            String firstInteraction = scan.next();
-            System.out.println(firstInteraction);
+            Thread.sleep(750);
+            System.out.println("You have $100 to start!");
+            Thread.sleep(750);
             double reward = 0;
             while(run){
             Horse s = new Horse("S");
@@ -39,16 +40,43 @@ public class Main {
             Horse c = new Horse("C");
             Horse d = new Horse("D");
             Horse e = new Horse("E");
-
             Race race1 = new Race(s,a,b,c,d,e);
+            System.out.println("Would you like to talk to the bar? \n1.Yes \n2.No");
+                int talking = scan.nextInt();
+                if(talking == 1){
+                    int randomTalks = (int) (1 + (Math.random() * 100));
+
+                    if (randomTalks == 1){
+                        System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠛⠛⠒⠲⠖⠒⠛⠓⣆⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⢹⡄⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⣠⡴⠶⠶⠶⠶⠶⣧⣤⣟⣿⣿⣛⣛⣟⣿⣶⣤⣼⡶⠶⠶⠶⡶⣤⣀\n" +
+                                "⢸⣿⣿⣿⣿⣶⣶⣦⣤⣤⣭⣭⣉⣭⣭⣩⣩⣧⣤⣶⣷⣶⣶⣿⣿⣿⣿\n" +
+                                "⠀⠻⣿⣿⣿⣿⣿⢙⣿⠁⠺⠿⢷⡈⢹⡿⡯⠆⢙⣿⡉⣿⣿⣿⣿⣿⠏\n" +
+                                "⠀⠀⠘⠻⣿⣿⡿⣼⣿⣤⡤⠴⠟⠋⠻⣧⣤⣀⣸⣿⣽⣿⣿⣿⠟⠁⠀\n" +
+                                "⠀⠀⠀⢀⡴⣛⣷⣿⣗⡒⠒⠒⠂⠀⢰⣿⠟⢉⣤⣾⡿⢟⠋⠀⠀⠀⠀\n" +
+                                "⠀⠀⢠⢏⣜⡵⡟⣿⢮⡉⠉⠉⠃⠀⣾⡏⠀⢉⣼⢿⡗⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠸⠞⠋⢀⣿⢹⣷⡍⠓⠦⠄⠀⢹⡇⢀⡾⣳⠋⡇⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⢸⣩⠟⢯⠻⡄⢦⠀⠀⠈⡇⠈⢠⠃⣸⠁⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠈⠀⠀⠈⢦⡁⠘⣧⠀⠀⡇⠀⢋⡼⠁⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣄⢹⡆⠀⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"+
+                                "Don't tell anyone I told you this, but the horse in lane "+race1.getFavorite()+" is the favorite to win...");
+                    }
+
+
+                }
+
+
+
 
             System.out.println(
-                    "1. "+s.getHorseName()+" Odds: 2-1 \n2. "+
-                            a.getHorseName()+" Odds: 2.5-1 \n3. "+
+                    "1. "+s.getHorseName()+" Odds: 1.5-1 \n2. "+
+                            a.getHorseName()+" Odds: 2-1 \n3. "+
                             b.getHorseName()+" Odds: 3-1 \n4. "+
                             c.getHorseName()+" Odds: 4-1 \n5. "+
-                            d.getHorseName()+" Odds: 5-1 \n6. "+
-                            e.getHorseName()+" Odds: 10-1 \n"+
+                            d.getHorseName()+" Odds: 10-1 \n6. "+
+                            e.getHorseName()+" Odds: 25-1 \n"+
                             "Choose a horse to bet on 1-6 (not a name): ");
 
             boolean playerIsChoosing = true;
@@ -97,17 +125,17 @@ public class Main {
 
             if(race1.getWinner()==choice) {
                 if(choice==1)
-                    reward = risk*3;
+                    reward = risk*2.5;
                 if(choice==2)
-                    reward = risk*3.5;
+                    reward = risk*3;
                 if(choice==3)
                     reward = risk*4;
                 if(choice==4)
                     reward = risk*5;
                 if(choice==5)
-                    reward = risk*6;
-                if(choice==6)
                     reward = risk*11;
+                if(choice==6)
+                    reward = risk*26;
                 playerMoney += reward;
                 System.out.println("You won, nice job!\n" + "Your bet returned $"+reward+".\n You now have $"+playerMoney);
 
@@ -115,6 +143,10 @@ public class Main {
             else{
                 System.out.println("You lost!\n"+"You now have $"+playerMoney);
             }
+            risk = 0;
+
+
+
         }
     }
 }

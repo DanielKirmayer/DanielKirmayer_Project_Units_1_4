@@ -1,6 +1,4 @@
-import java.io.*;
 import java.lang.*;
-import java.util.concurrent.TimeUnit;
 
 public class Race {
 
@@ -39,7 +37,7 @@ public class Race {
 
     public String RaceAdvance(Horse s,Horse a,Horse b,Horse c,Horse d,Horse e) throws InterruptedException {
         totalWeight = (sWeight + aWeight + bWeight + cWeight + dWeight + eWeight);
-        int randAdv = (int) (Math.random() * (totalWeight));
+        int randAdv = (int) (1+(Math.random() * (totalWeight)));
         if (randAdv <= sWeight)
             sAdvance += 1;
         else if (randAdv <= aWeight+sWeight)
@@ -102,5 +100,36 @@ public class Race {
     }
     public int getWinner(){
         return winner;
+    }
+    public int getFavorite(){
+        int max = 0;
+
+        if (sWeight > max)
+            max = sWeight;
+        if (aWeight > max)
+            max = aWeight;
+        if (bWeight > max)
+            max = bWeight;
+        if (cWeight > max)
+            max = cWeight;
+        if (dWeight > max)
+            max = dWeight;
+        if (eWeight > max)
+            max = eWeight;
+
+        if (sWeight == max)
+            return 1;
+        if (aWeight == max)
+            return 2;
+        if (bWeight == max)
+            return 3;
+        if (cWeight == max)
+            return 4;
+        if (dWeight == max)
+            return 5;
+        if (eWeight == max)
+            return 6;
+        return 0;
+
     }
 }
