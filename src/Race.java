@@ -117,19 +117,58 @@ public class Race {
         if (eWeight > max)
             max = eWeight;
 
-        if (sWeight == max)
-            return 1;
-        if (aWeight == max)
-            return 2;
-        if (bWeight == max)
-            return 3;
-        if (cWeight == max)
-            return 4;
-        if (dWeight == max)
-            return 5;
         if (eWeight == max)
             return 6;
+        if (dWeight == max)
+            return 5;
+        if (cWeight == max)
+            return 4;
+        if (bWeight == max)
+            return 3;
+        if (aWeight == max)
+            return 2;
+        if (sWeight == max)
+            return 1;
+
+
+
+
+
+
         return 0;
 
     }
+
+    public int getHorseBad(){
+        int min = 20;
+
+        if (sWeight < min)
+            min = sWeight;
+        if (aWeight < min)
+            min = aWeight;
+        if (bWeight < min)
+            min = bWeight;
+        if (cWeight < min)
+            min = cWeight;
+        if (dWeight < min)
+            min = dWeight;
+        if (eWeight < min)
+            min = eWeight;
+
+        if (sWeight == min)
+            return 1;
+        if (aWeight == min)
+            return 2;
+        if (bWeight == min)
+            return 3;
+        if (cWeight == min)
+            return 4;
+        if (dWeight == min)
+            return 5;
+        if (eWeight == min)
+            return 6;
+
+        return 0;
+    }
+
 }
