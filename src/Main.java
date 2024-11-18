@@ -6,7 +6,6 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        boolean run = true;
         double playerMoney = 100;
         double risk = 0;
         int choice = 0;
@@ -33,18 +32,36 @@ public class Main {
             System.out.println("You have $100 to start!");
             Thread.sleep(750);
             double reward = 0;
-            while(run){
+            while(playerMoney > 0){
             Horse s = new Horse("S");
             Horse a = new Horse("A");
             Horse b = new Horse("B");
             Horse c = new Horse("C");
             Horse d = new Horse("D");
             Horse e = new Horse("E");
+            int talking = 0;
             Race race1 = new Race(s,a,b,c,d,e);
-            System.out.println("Would you like to talk to the bar? \n1.Yes \n2.No");
-                int talking = scan.nextInt();
+                System.out.println("Would you like to talk to the bar? \n1.Yes \n2.No");
+                boolean determiningIfTalkingToBar = true;
+                while (determiningIfTalkingToBar) {
+                    try {
+                        talking=scan.nextInt();
+                        if (talking >= 1 && talking <= 2) {
+                            determiningIfTalkingToBar = false;
+                        } else {
+                            System.out.println("Invalid choice, please try again. Choose a number 1-2.");
+                        }
+                    } catch (InputMismatchException exception) {
+                        System.out.println("Invalid choice, please try again. Choose a number 1-2.");
+                        scan.nextLine();
+                    }
+                }
+
+
                 if(talking == 1){
                     int randomTalks = (int) (1 + (Math.random() * 100));
+                    System.out.println("You start talking to the bar...");
+                    Thread.sleep(300);
 
                     if (randomTalks == 1){
                         System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠛⠛⠒⠲⠖⠒⠛⠓⣆⠀⠀⠀⠀⠀⠀⠀⠀\n" +
@@ -127,17 +144,33 @@ public class Main {
                                 "I'll give you some good advice... for a price...");
                                 Thread.sleep(600);
                                 System.out.println("Pay $50 for advice? ");
-                        System.out.println("1. Yes ");
-                        System.out.println("2. No ");
-                        int talkToScammer=scan.nextInt();
+                                System.out.println("1. Yes");
+                                System.out.println("2. No");
+                        int talkToScammer=0;
+                        boolean conversingWithScammer = true;
+                        while (conversingWithScammer) {
+                            try {
+                                talkToScammer=scan.nextInt();
+                                if (talkToScammer >= 1 && talkToScammer <= 2) {
+                                    conversingWithScammer = false;
+                                } else {
+                                    System.out.println("Invalid choice, please try again. Choose a number 1-2.");
+                                }
+                            } catch (InputMismatchException exception) {
+                                System.out.println("Invalid choice, please try again. Choose a number 1-2.");
+                                scan.nextLine();
+                            }
+                        }
+
                         if (talkToScammer == 1){
                             if (playerMoney >= 50){
                                 playerMoney -= 50;
                                 int temperRand = (int) (Math.random() * 2);
                                 if (temperRand == 0)
-                                    System.out.println("Bet on horse "+race1.getFavorite());
+                                    System.out.println("Bet on horse "+race1.getFavorite()+".");
                                 else
-                                    System.out.println("Bet on horse "+race1.getHorseBad());
+                                    System.out.println("Bet on horse "+race1.getHorseBad()+".");
+                                System.out.println("You now have $"+playerMoney+".");
                             }
                             else
                                 System.out.println("You don't have the money, get outta my sight.");
@@ -296,6 +329,67 @@ public class Main {
                         else
                             System.out.println("The horse in lane 6 may be in the dumps.");
                     }
+                    else if (randomTalks <= 90){
+                        System.out.println("You start talking to a mushroom...");
+                        Thread.sleep(500);
+                        System.out.println("You eat the mushroom...");
+                        int randTemp = (int)(Math.random() * 3);
+                        if (randTemp <= 1){
+                            System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⣧⡀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⢦⣀⡀⠀⠙⢶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣄⠀⠀⠀⠀⠀⠈⠳⣮⡙⠲⠀⠀⢱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣷⡄⠀⠀⠀⢀⡀⠀⠙⠳⣤⠀⠀⣧⠀⠀⣀⣼⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣇⣻⣯⠷⠟⠋⠉⠉⠻⣆⠀⠈⣧⢀⡇⣀⣾⡿⢿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠓⣦⣤⣀⡀⠀⢀⣀⣠⣤⡾⠟⠛⠁⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⡿⢨⣼⠟⠁⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠙⠻⠭⣉⣉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⢘⡶⠋⠀⠀⠀⠀⣾⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣦⡀⠀⠀⠀⠀⠀⠀⣀⣩⣤⠤⠴⠒⠒⠂⠀⠀⠀⠀⢀⣀⠀⠀⠀⢸⡟⠀⠀⠀⠀⠀⣼⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢟⠳⠦⠴⠖⠛⠋⠉⠀⠀⠀⠀⣀⣠⠴⠖⠛⠋⠉⠉⠀⠀⢀⣠⢯⠇⠀⠀⠀⢠⠔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠲⠤⠀⠀⠀⠀⣀⣤⠶⠛⠉⠀⠀⠀⠀⠀⢀⣠⡤⠖⠋⠁⠘⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣄⣀⣀⣀⣀⣀⣤⣤⡶⠟⠋⠁⠀⠀⠀⠀⢀⣤⠶⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⢏⣉⣉⣉⣁⠀⠀⠀⠀⠀⡀⢀⣴⣯⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢤⣤⣤⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⣼⠃⢿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⢯⡙⠷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⣏⠀⣈⠛⠙⠀⠀⢠⠀⠀⠀⠀⠀⠀⡆⠀⠸⠛⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⠈⠙⠷⣤⡀⠀⠀⠀⠀⠀⠀⡀⠬⢿⡀⡟⡀⠀⠀⠀⢸⡄⠀⠀⠀⠀⢠⡇⠀⠀⠈⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠓⠶⠶⠶⠒⠉⠀⠀⣠⠟⠁⡇⠀⠀⠀⠘⡇⠀⠀⠀⠀⢸⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣄⣠⣀⣀⣀⣠⣤⣤⣤⡾⠋⠁⠀⠀⡇⠀⠀⠀⠠⢳⠀⠀⠀⢠⡟⠀⠀⠀⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠿⠟⠛⠛⠛⠛⠛⠛⠛⠛⠛⠋⢉⡄⠀⠀⠀⠀⡶⠹⡄⠀⠀⠀⠸⠀⠀⠀⠀⠿⠀⠀⢀⡿⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠴⠊⠀⠀⠀⠀⠀⡇⠀⢹⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠃⠀⠀⠀⠀⢀⣀⣠⡤⠤⠖⠛⠉⠁⠀⠀⠀⠀⣴⠀⠀⡇⠀⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⡞⠀⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡇⠀⠀⢀⣴⠾⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠃⠀⢸⠇⠀⠀⢸⢰⡆⠀⠀⠀⠀⠀⢰⡄⠁⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⠀⠀⢠⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠁⠀⠀⣸⠀⠀⠀⢸⣿⣷⡀⠀⠀⠀⣠⣿⣷⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠃⢀⣠⠴⠶⠖⠒⠒⠊⠁⠀⣠⣾⠏⠁⠀⠀⢠⡏⠀⠀⠀⢘⣿⣿⡿⠀⠀⠀⢿⣿⠿⡆⠀⠀⣿⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣴⠏⠁⠀⠀⠀⠀⠀⢀⣴⣿⠟⠁⠀⠀⢀⡎⢸⠇⠀⠀⠀⠸⣄⠈⠀⠀⠀⠀⠀⠀⣰⠇⠀⠀⣿⡀⠀⠀⠈⠙⠛⠶⣤⣄⠀⠀⠀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⡟⠀⠀⠀⠀⠀⢀⣴⡿⠋⠁⠀⠀⠀⢠⠟⠀⡞⠀⠀⠀⠀⠀⠙⢦⣄⡤⠀⢠⣴⡶⠋⠀⠀⠀⣿⢷⡀⠀⠀⠀⠀⠀⠀⠉⠻⣦⡀⠀⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠂⠀⠀⠀⠀⢰⣿⠟⠀⠀⠀⠀⢀⡴⠋⠀⢰⡇⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠀⠀⠀⠀⠀⣿⠈⢷⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣦⠀⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡀⠀⠀⠀⢠⣿⠇⠀⠀⠀⠀⡼⠋⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠘⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣆⠀⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⣸⣿⠀⠀⡴⠁⢸⠁⠀⠀⠀⠀⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⡄⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢿⣇⢀⡃⠀⠘⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟⠀⠀⠈⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣦⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢃\n" +
+                                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸\n");
+                            if (race1.getFavorite() == 1 || race1.getFavorite() == 2){
+                                System.out.println("Your vision briefly shows you a horse but you cant make out if it's "+s.getHorseName()+" or "+a.getHorseName()+".");
+                            }
+                            if (race1.getFavorite() == 3 || race1.getFavorite() == 4){
+                                System.out.println("Your vision briefly shows you a horse but you cant make out if it's "+b.getHorseName()+" or "+c.getHorseName()+".");
+                            }
+                            if (race1.getFavorite() == 5 || race1.getFavorite() == 6){
+                                System.out.println("Your vision briefly shows you a horse but you cant make out if it's "+d.getHorseName()+" or "+e.getHorseName()+".");
+                            }
+                        }
+                        else
+                            System.out.println("Your vision is too blurry, you can't make anything out...");
+
+                        Thread.sleep(750);
+                    }
+                    else if (randomTalks <= 100){
+                        System.out.println("A horse comes out of nowhere and steals $10 from you...");
+                        if (playerMoney>=10)
+                            playerMoney -= 10;
+                        else
+                            playerMoney = 0;
+                    }
 
 
 
@@ -384,5 +478,6 @@ public class Main {
 
 
         }
+        System.out.println("You did pretty good, unfortunately you're all out of cash, better luck next time!");
     }
 }
