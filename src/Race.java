@@ -68,7 +68,8 @@ public class Race {
 
 
         if(!raceOver)
-            {return        sStrF+"\n"
+            {return
+                      sStrF+"\n"
                     + aStrF+"\n"
                     + bStrF+"\n"
                     + cStrF+"\n"
