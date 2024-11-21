@@ -428,7 +428,7 @@ public class Main {
 
 
                 while (risk > playerMoney || risk <= 0){
-            System.out.println("How much would you like to bet?: ");
+            System.out.println("How much would you like to bet? (You have: $"+playerMoney+"): ");
             try {
             risk = scan.nextDouble();
             risk = (double) Math.round(risk * 100) /100;}
